@@ -1,14 +1,11 @@
 import React from "react";
-import Header from "./Components/Header/Header";
+import NavBar from "./Components/NavBar/NavBar";
 const App = () => {
   return (
     <>
-    <Header/>
+    <NavBar/>
     </>
-    
-      
-    
-  )
+      )
 }
 
 export default App
