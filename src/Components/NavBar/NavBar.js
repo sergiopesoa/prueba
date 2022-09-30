@@ -2,7 +2,6 @@ import React from "react"
 import './NavBar.css'
 import logo from "../../assets/logo.jpg"
 import {ComponenteCartWidget} from '../ComponenteCartWidget'
-
 function NavBar({ gretting ,children }) {
   return (
     <header className="header">
