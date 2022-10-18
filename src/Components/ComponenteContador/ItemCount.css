@@ -1,0 +1,15 @@
+.botonesItems {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+h2 {
+    width: 120px;
+    border: solid;
+    margin: solid;
+    text-align: center;
+}
+button {
+    font-size: 30px;
+    width: 300px;
+}
