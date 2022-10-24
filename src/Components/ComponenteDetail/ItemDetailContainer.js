@@ -2,26 +2,15 @@ import React , { useEffect, useState } from "react";
 import {ItemDetail} from './ItemDetail';
 
 
-export const detalleProducto = {
-    caracteristicas:"Esta taza pertenece a la coleccion primavera que hemos creado para la hora del cafe o del te, su precio es de $" , precio: 400}
-
-    const listaDetalleProducto = new Promise((resolve , reject)=> {
-        setTimeout(() => {
-          resolve(detalleProducto);
-        }, 2000);
-      })
-
     export const ItemDetailContainer = (props) => {
     
-      const [DetalleProductos , setDetalleProductos]= useState([]);
+      const [DetalleProductos , setDetalleProductos]= useState({});
 
       useEffect(()=> {
-        console.log (listaDetalleProducto);
-       listaDetalleProducto
-       .then((data)=> {
-        setDetalleProductos(data);
-       })
-       .catch((error)=> {
+        fetch('https://63505e5b3e9fa1244e452d0a.mockapi.io/api/productos/1')
+            .then((res)=> res.json())
+            .then((json)=> setDetalleProductos(json))
+            .catch((error)=> {
        console.log (error);
        })
     
@@ -30,7 +19,7 @@ export const detalleProducto = {
       return (
         <>
          
-        <ItemDetail detalles = {detalleProducto}/>
+        <ItemDetail  detalles = {DetalleProductos}/>
         
         </>
        

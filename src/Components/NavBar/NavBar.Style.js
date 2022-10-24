@@ -5,14 +5,22 @@ export const styles = {
         display:'flex',
         flexDirection:'row',
         alignItems: 'center',
-        width: 'auto',
-        justifyContent: 'space-evenly',
+       
+        height: 100,
+        justifyContent:'space-between',
         marginTop: 20,
       } ,
     img: {
-        width: '20%' ,
+        width: '30%' ,
         borderRadius: 10 ,
+        width: 70 ,
+    } ,
+    
+    categorias: {
+            margin: 10 ,
+            fontSize : 20 ,
+          }
+     
     } 
-,
         
-    }
+    

@@ -6,6 +6,7 @@ import {ComponenteContador} from "./Components/ComponenteContador/ItemCount";
 import { ItemDetailContainer } from "./Components/ComponenteDetail/ItemDetailContainer";
 import { Cart } from "./Components/CartView/Cart";
 import { BrowserRouter, Routes , Route } from "react-router-dom";
+import { Item } from "./Components/ComponenteListContainer/Item";
 
 const App = () => {
   const Mensaje = ".....Piezas únicas hechas con el corazón"
@@ -14,15 +15,15 @@ const App = () => {
   return (
     <>
     <BrowserRouter>
-    <NavBar>
+    <NavBar/>
     <ComponenteNombre />
       <Routes>
       <Route path="/" element={<ItemListContainer gretting ={Mensaje}/>}/>
-      <Route path="/categoria/:idCategoria" element={<ItemListContainer gretting ={Mensaje}/>}/>
+      <Route path="/categoria/:id" element={<ItemListContainer gretting ={Mensaje}/>}/>
       <Route path="/producto/:id" element= {<ItemDetailContainer/>}/>
       <Route path="/cart" element= {<Cart/>}/>
       </Routes>
-    </NavBar>
+  
     
     
     </BrowserRouter>
