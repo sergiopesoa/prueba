@@ -9,8 +9,10 @@ import { useParams } from 'react-router-dom';
 export const ItemListContainer = ({gretting , Mensaje}) => {
   const [Productos , setProductos]= useState([]);
   const [Loading , setLoading] = useState (true);
-  const {id} = useParams ();
-   console.log (id);
+ 
+ 
+  const {categoriaId} = useParams ();
+   
   const URL_BASE = 'https://63505e5b3e9fa1244e452d0a.mockapi.io/api/productos'
   const URL_CAT =  'https://63505e5b3e9fa1244e452d0a.mockapi.io/api/productos/1/categorias'
     
@@ -19,9 +21,10 @@ export const ItemListContainer = ({gretting , Mensaje}) => {
       try  {
         const res = await fetch('https://63505e5b3e9fa1244e452d0a.mockapi.io/api/productos');
         const data = await res.json ();
+        const ProductosDeLaCategoria = categoriaId ? Productos.filter( item => item.categoria === categoriaId) : Productos
         setProductos(data);
         console.log(data);
-      } catch {
+        } catch {
         console.log ("todo mal");
    } finally {
      setLoading(false);
