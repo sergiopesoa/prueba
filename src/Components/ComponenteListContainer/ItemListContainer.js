@@ -1,5 +1,4 @@
 import { InsertEmoticonOutlined } from '@mui/icons-material';
-import { data } from 'autoprefixer';
 import React, { useEffect, useState } from 'react';
 import { ItemCount } from '../ComponenteContador/ItemCount';
 import {ItemList} from '../ComponenteListContainer/ItemList';
@@ -11,29 +10,31 @@ export const ItemListContainer = ({gretting , Mensaje}) => {
   const [Loading , setLoading] = useState (true);
  
  
-  const categoriaId  = useParams ();
+  const{ categoriaId } = useParams ();
    
   const URL_BASE = 'https://63505e5b3e9fa1244e452d0a.mockapi.io/api/productos'
-  const URL_CAT =  'https://63505e5b3e9fa1244e452d0a.mockapi.io/api/productos/1/categorias/${categoriaId}'
+  const URL_CAT =  'https://63505e5b3e9fa1244e452d0a.mockapi.io/api/productos/1/categoria'
     
   useEffect(()=> {
     const getProductos = async () => {
       try  {
         const res = await fetch('https://63505e5b3e9fa1244e452d0a.mockapi.io/api/productos');
         const data = await res.json ();
-        const ProductosDeLaCategoria = categoriaId ? Productos.filter( item => item.categoria === categoriaId) : Productos
+       
         setProductos(data);
-        console.log(data);
+        
         console.log(Productos);
         console.log (categoriaId);
+        
         } catch {
         console.log ("todo mal");
    } finally {
      setLoading(false);
+  const ProductosCategoria = categoriaId ? Productos.filter( item => item.categoriaId === categoriaId) : Productos
    }
   };
   getProductos(); 
-   }, [])
+   }, [categoriaId])
   
   const onAdd = () => {
     console.log ('agregaste un producto al carrito')
