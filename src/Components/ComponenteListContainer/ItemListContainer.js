@@ -20,7 +20,9 @@ export const ItemListContainer = ({gretting , Mensaje}) => {
       try  {
         const res = await fetch('https://63505e5b3e9fa1244e452d0a.mockapi.io/api/productos');
         const data = await res.json ();
-       
+         
+        setProductos( categoriaId ? data.filter( item => item.categoriaId === categoriaId) : data);  
+        
         setProductos(data);
         
         console.log(Productos);
@@ -30,7 +32,7 @@ export const ItemListContainer = ({gretting , Mensaje}) => {
         console.log ("todo mal");
    } finally {
      setLoading(false);
-  const ProductosCategoria = categoriaId ? Productos.filter( item => item.categoriaId === categoriaId) : Productos
+  
    }
   };
   getProductos(); 
