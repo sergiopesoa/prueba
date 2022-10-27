@@ -7,10 +7,10 @@ import {Link , NavLink} from "react-router-dom"
 const NavBar = ({ gretting ,children })=> {
 
 const categorias  = [
-  {nombre:"inicio" , id: 0 , ruta :"/categoria/inicio" }, ,
-  {nombre:"vajilla" , id: 1 , ruta :"/categoria/vajilla" },
-  {nombre:"te" , id: 2 , ruta :"/categoria/te" },
-  {nombre:"como comprar" , id: 3 , ruta :"/categoria/como comprar"},
+  {nombre:"inicio" , id: 0 , ruta :"/category/inicio" }, ,
+  {nombre:"vajilla" , id: 1 , ruta :"/category/vajilla" },
+  {nombre:"te" , id: 2 , ruta :"/category/te" },
+  {nombre:"como comprar" , id: 3 , ruta :"/category/como comprar"},
 ];
 
   return (

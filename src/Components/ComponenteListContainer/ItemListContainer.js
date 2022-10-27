@@ -19,9 +19,9 @@ export const ItemListContainer = ({gretting , Mensaje}) => {
   useEffect(() => {
     const getProducts = async () => {
         try {
-            const res = await fetch(categoriaId === undefined ? 'https://63505e5b3e9fa1244e452d0a.mockapi.io/api/productos' : urlCategory);
+            const res = await fetch(URL_BASE);
             const data = await res.json();
-            setProductos(data);
+            setProductos(categoriaId  ? data.filter((item)=> item.categoriaId === categoriaId): data);
             console.log(data);
             console.log(categoriaId);
         }
