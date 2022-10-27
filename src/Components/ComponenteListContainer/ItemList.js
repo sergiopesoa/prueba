@@ -9,7 +9,7 @@ export const ItemList = (props) => {
         <>
             {
              props.Productos.map((producto) => {
-             return   <Item key = {producto.id} pieza={producto} urlPieza={'/producto/${producto.id}'}/>
+             return   <Item key = {producto.id} pieza={producto} urlPieza={`/producto/${producto.id}`}/>
              
             })
             
