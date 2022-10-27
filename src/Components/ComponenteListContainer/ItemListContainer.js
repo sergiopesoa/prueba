@@ -14,7 +14,7 @@ export const ItemListContainer = ({gretting , Mensaje}) => {
    
   const URL_BASE = 'https://63505e5b3e9fa1244e452d0a.mockapi.io/api/productos'
   // const URL_CAT =  'https://63505e5b3e9fa1244e452d0a.mockapi.io/api/productos/1/categoria'
-  const urlCategory = `https://63505e5b3e9fa1244e452d0a.mockapi.io/api/productos/1/categoria/${categoriaId}`;
+  const urlCategory = 'https://63505e5b3e9fa1244e452d0a.mockapi.io/api/productos/1/categoria/${categoriaId}';
 
   useEffect(() => {
     const getProducts = async () => {
