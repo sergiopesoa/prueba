@@ -5,14 +5,10 @@ export const Item =(props) =>
 {
     
     return(
-<>
-
-
-<Link to= {props.urlPieza} ><h2  key = {props.pieza.id}>{props.pieza.imagen}{props.pieza.categoria}{props.pieza.id}{props.pieza.nombre} {props.pieza.precio}{props.pieza.stock}</h2></Link>
-</>
-
-
+    <>
+    <Link to= {props.urlPieza} ><h4  key = {props.pieza.id}> Pieza N°{props.pieza.id}   {props.pieza.categoria}{props.pieza.name}    precio : ${props.pieza.precio}   stock :{props.pieza.stock}unid.</h4></Link>
+    </>
     )
+ }
+
   
-      
-   }
