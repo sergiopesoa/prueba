@@ -22,9 +22,7 @@ export const ItemListContainer = ({gretting , Mensaje}) => {
             const res = await fetch(URL_BASE);
             const data = await res.json();
             setProductos(categoriaId  ? data.filter((item)=> item.categoriaId === categoriaId): data);
-            console.log(data);
-            console.log(categoriaId);
-        }
+            }
         catch (error) {
             console.log(error);
         }
@@ -35,10 +33,7 @@ export const ItemListContainer = ({gretting , Mensaje}) => {
     getProducts();
 }, [categoriaId]);
   
-  const onAdd = () => {
-    console.log ('agregaste un producto al carrito')
-  };
-
+  
   return (
 
     <>
@@ -46,7 +41,7 @@ export const ItemListContainer = ({gretting , Mensaje}) => {
     <h1>{Mensaje}</h1>
    {<>{Loading ? <h1>cargando...</h1> : <ItemList Productos = {Productos}/>}</>}
 
-    <ItemCount  stock = {4} initial = {1} onAdd = {onAdd}/>
+    
     </>
     
   )

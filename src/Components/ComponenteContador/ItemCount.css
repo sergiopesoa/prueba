@@ -1,15 +1,31 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.imagen1 {
+    border-radius: 10px;
+}
+
 .botonesItems {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
+    
 }
 h2 {
-    width: 90px;
+    width: 175px;
     border: solid;
     margin: solid;
     text-align: center;
+    background-color: pink;
+    color: red;
+    border-radius: 10px;
 }
 button {
-    font-size: 30px;
-    width: 300px;
+    font-size: 15px;
+    width: 20%;
+    background-color: pink;
+    color: red;
+    border-radius: 10px;
 }

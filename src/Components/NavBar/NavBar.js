@@ -1,6 +1,6 @@
 import React from "react"
 import logo from "../../assets/logo.jpg"
-import {ComponenteCartWidget} from '../ComponenteCartWidget'
+import {ComponenteCartWidget} from '../ComponenteCarWidget/ComponenteCartWidget'
 import { styles } from "./NavBar.Style"
 import {Link , NavLink} from "react-router-dom"
 
@@ -18,7 +18,7 @@ const categorias  = [
      <Link  to="/">
        <img style= {styles.img} src={logo} alt="tienda online" />
     </Link>
-      <h1>Cerámica del Corazón</h1>
+      <h1 style={styles.h1}>Cerámica del Corazón</h1>
       {children}  
      <nav>
                 {
@@ -28,7 +28,7 @@ const categorias  = [
                 }
      </nav>
   <Link to="/cart">
-  <ComponenteCartWidget/>
+  <ComponenteCartWidget />
   </Link>
   
     </header>
