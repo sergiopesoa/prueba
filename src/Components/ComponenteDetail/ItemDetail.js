@@ -2,6 +2,10 @@ import React, { useState , useContext } from "react";
 import { Link } from "react-router-dom";
 import {ItemCount} from '../ComponenteContador/ItemCount'
 import '../ComponenteContador/ItemCount.css'
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
 import { Context } from "../../Context/CustomProvider";
 
 
@@ -18,21 +22,32 @@ const {addItem} = useContext (Context);
   };
 
   return (
-
 <>
-<div className="container">
-  <div className="row">
-    <div className="col-md-12">
-       <img src= {props.detalles.imagen} alt="imagen cerámica"/>
-  <div class="card-body">
-    <h5 class="card-title">categoria   {props.detalles.categoriaId}</h5>
-    <p class="card-text">Pieza artesanal realizada totalmente a mano.</p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">{props.detalles.name}</li>
-    <li class="list-group-item">precio: $ {props.detalles.precio} </li>
-    <li class="list-group-item">stock:  {props.detalles.stock}</li>
-  </ul>
+<Card sx={{ maxWidth: 245 }}style={styles.container}>
+      <CardMedia
+        component="img"
+        height="200"
+        image={props.detalles.imagen}
+        alt="pieza ceramica"
+      />
+      <CardContent>
+      <Typography variant="h5" color="text.primary">
+        {props.detalles.name} 
+        </Typography>
+
+        <Typography gutterBottom variant="h5" component="div" style={styles.title}>
+        precio : ${props.detalles.precio}  
+        </Typography>
+        <Typography variant="h5" color="text.primary">
+         stock  : {props.detalles.stock}
+        </Typography>
+
+        <Typography variant="h5" color="text.primary">
+         Pieza hecha totalmente a mano , esmaltada en forma individual.
+        </Typography>
+      </CardContent>
+    </Card>
+
 {showItemContador ? ( 
 <ItemCount  stock = {props.detalles.stock} initial = {1} onAdd = {onAdd}/>
 ) : (
@@ -42,15 +57,22 @@ const {addItem} = useContext (Context);
 )
 
 }
-
- 
-   </div>
-  </div>
-</div>
-
-
-
 </>
   )
 }
 
+const styles = {
+  container: {
+ width: window.innerHeight > 900 ? "25%" : "90%",
+ flexDirection: "column",
+ justifyContent: "center",
+ alignItems: "center",
+ margin: 20,
+ backgroundColor: "#ff9399",
+},
+title: {
+ textOverflow: "ellipsis",
+ overflow: "hidden",
+ height: 100,
+},
+};
