@@ -1,17 +1,18 @@
-import React, {useState } from "react";
+import React, { useState , useContext } from "react";
 import { Link } from "react-router-dom";
 import {ItemCount} from '../ComponenteContador/ItemCount'
 import '../ComponenteContador/ItemCount.css'
-
+import { Context } from "../../Context/CustomProvider";
 
 
 export const ItemDetail =(props) => 
 { 
 const [showItemContador , setShowItemContador] = useState(true);
+const {addItem} = useContext (Context);
 
 
-  const onAdd = () => {
-    console.log ('agregaste un producto al carrito');
+  const onAdd = (contador) => {
+   addItem(props, contador);
     setShowItemContador (false);
 
   };

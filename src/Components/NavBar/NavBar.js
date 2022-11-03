@@ -1,6 +1,6 @@
 import React from "react"
 import logo from "../../assets/logo.jpg"
-import {ComponenteCartWidget} from '../ComponenteCarWidget/ComponenteCartWidget'
+import {ComponenteCartWidget} from './ComponenteCartWidget'
 import { styles } from "./NavBar.Style"
 import {Link , NavLink} from "react-router-dom"
 

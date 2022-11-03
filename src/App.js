@@ -7,7 +7,7 @@ import { ItemDetailContainer } from "./Components/ComponenteDetail/ItemDetailCon
 import { Cart } from "./Components/componenteCartView/Cart";
 import { BrowserRouter, Routes , Route } from "react-router-dom";
 import { Item } from "./Components/ComponenteListContainer/Item";
-
+import { CustomProvider } from "./Context/CustomProvider";
 const App = () => {
   const Mensaje = ".....Piezas únicas hechas con el corazón"
 
@@ -15,6 +15,7 @@ const App = () => {
   return (
     <>
     <BrowserRouter>
+    <CustomProvider>
       <NavBar/>
       <ComponenteNombre />
       <Routes>
@@ -23,6 +24,7 @@ const App = () => {
       <Route path="/producto/:productoId" element= {<ItemDetailContainer/>}/>
       <Route path="/cart" element= {<Cart/>}/>
       </Routes>
+      </CustomProvider>
     </BrowserRouter>
 
 
