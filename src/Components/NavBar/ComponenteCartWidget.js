@@ -1,6 +1,5 @@
 import React , { useContext} from 'react'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import context from 'react-bootstrap/esm/AccordionContext';
 import { Context } from '../../Context/CustomProvider';
 
 

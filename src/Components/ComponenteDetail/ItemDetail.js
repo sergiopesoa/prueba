@@ -11,19 +11,20 @@ import { Context } from "../../Context/CustomProvider";
 
 export const ItemDetail =(props) => 
 { 
-const [showItemContador , setShowItemContador] = useState(true);
+const [showItemContador , setShowItemContador] = useState(false);
 const {addItem} = useContext (Context);
 
 
   const onAdd = (contador) => {
    addItem(props, contador);
-    setShowItemContador (false);
+    setShowItemContador (true);
 
   };
 
   return (
 <>
-<Card sx={{ maxWidth: 245 }}style={styles.container}>
+
+<Card sx={{ maxWidth: 350 }}style={styles.container}>
       <CardMedia
         component="img"
         height="200"
@@ -48,7 +49,7 @@ const {addItem} = useContext (Context);
       </CardContent>
     </Card>
 
-{showItemContador ? ( 
+{! showItemContador ? ( 
 <ItemCount  stock = {props.detalles.stock} initial = {1} onAdd = {onAdd}/>
 ) : (
   <Link to= {'/cart'}>
@@ -67,7 +68,7 @@ const styles = {
  flexDirection: "column",
  justifyContent: "center",
  alignItems: "center",
- margin: 20,
+ margin: 30,
  backgroundColor: "#ff9399",
 },
 title: {

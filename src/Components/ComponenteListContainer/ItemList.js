@@ -1,6 +1,7 @@
 import React from "react";
-
 import {Item} from "./Item";
+
+
 
 
 export const ItemList = (props) => {
@@ -13,7 +14,7 @@ export const ItemList = (props) => {
             {
                           
              props.Productos.map((producto) => {
-             return   <Item key = {producto.id} pieza={producto} urlPieza={`/producto/${producto.id}`}/>
+             return   <Item key = {producto.categoriaId} pieza={producto} urlPieza={ "/productos/"+ producto.categoriaId}/>
              })
              }
              
@@ -31,3 +32,5 @@ const styles = {
       flexWrap: "wrap",
     }
   }
+
+  // `/productos/`

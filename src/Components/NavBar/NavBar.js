@@ -4,10 +4,11 @@ import {ComponenteCartWidget} from './ComponenteCartWidget'
 import { styles } from "./NavBar.Style"
 import {Link , NavLink} from "react-router-dom"
 
+
 const NavBar = ({ gretting ,children })=> {
 
 const categorias  = [
-  {nombre:"desayuno" , id: 0 , ruta :"/category/desayuno" }, ,
+  {nombre:"desayuno" , id: 0 , ruta :"/category/desayuno" }, 
   {nombre:"vajilla" , id: 1 , ruta :"/category/vajilla" },
   {nombre:"te" , id: 2 , ruta :"/category/te" },
   {nombre:"jardín" , id: 3 , ruta :"/category/jardín"},

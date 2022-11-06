@@ -32,8 +32,7 @@ export const Item = (props) => {
       </CardContent>
       <CardActions>
       <Link to= {props.urlPieza}>
-        
-        <Button size="small">Ver detalles</Button>
+           <Button size="small">Ver detalles</Button>
         </Link>
       </CardActions>
     </Card>
@@ -57,4 +56,4 @@ const styles = {
     },
   };
 
-  // rgba(249, 220, 92, 0.3)
+ 

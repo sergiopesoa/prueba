@@ -14,7 +14,7 @@
     
 }
 h2 {
-    width: 175px;
+    width: 115px;
     border: solid;
     margin: solid;
     text-align: center;
@@ -24,7 +24,7 @@ h2 {
 }
 button {
     font-size: 15px;
-    width: 20%;
+    width: 8%;
     background-color: pink;
     color: red;
     border-radius: 10px;

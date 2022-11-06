@@ -2,35 +2,48 @@ import React, { useState , createContext } from 'react'
 import { useEffect } from 'react';
 
 export const Context = createContext ();
-// console.log(Context);
 export const CustomProvider = ({ children }) => {
   const [cart, setCart] = useState ([]);
   const [ qty , setQty] = useState (0);
   const [total , setTotal] = useState (0);
+  useEffect(() =>{
+    let cantidad = 0 ;
+    let totalCosto = 0 ;
+    cart.forEach(item => {
+     cantidad += item.cantidad;
+     totalCosto += (item.precio * item.cantidad);
+    });
+    setQty(cantidad);
+    setTotal(totalCosto);
+   },[cart]);
 
-
-
-const addItem =(producto,cantidad) =>{
-  console.log (producto);
-console.log("agrega ${cantidad} del producto ${producto}");
+const addItem =(item, cantidad) =>{
+ if (isInCart (item.id)){
+const actualizado = cart.map ( (producto)=> {
+  if(producto.id === item.id){
+    producto.cantidad += cantidad ;
+   }
+   return producto;
+  });
+  setCart(actualizado);
+} else{
+  setCart([...cart,{...item , cantidad}]);
 }
+setQty(qty + cantidad);
+setTotal(total + (item.precio * cantidad));
+};
+
 const deleteItem = (id) => {
-setCart (cart.filter (producto => producto.id !== id))
+const found = cart.find(producto => producto.id === id );
+setCart (cart.filter (item => item.id !== id));
+setQty(qty - found.cantidad);
+setTotal(total - (found.precio + found.cantidad));
 
-}
-useEffect(() =>{
- const cantidad = 0 ;
- const totalCosto = 0 ;
- cart.forEach(producto => {
-  cantidad += producto.cantidad;
-  totalCosto += (producto.precio * producto.cantidad);
- });
- setQty(cantidad);
- setTotal(totalCosto);
-},[cart])
+};
 
 
-const isInCart = (id) => cart.some (producto => producto.id === id)
+
+const isInCart = (id) => cart.some (item => item.id === id)
 
 const clear = () => {
   setCart([]);

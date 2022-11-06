@@ -13,10 +13,9 @@ export const styles = {
       color:'#ff9399',
     } ,
     img: {
-        width: '30%' ,
         borderRadius: 10 ,
         width: 70 ,
-        border: 1  ,
+        border: 1 ,
     } ,
     
      categorias: {
