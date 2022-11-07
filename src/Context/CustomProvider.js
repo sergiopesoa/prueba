@@ -6,12 +6,13 @@ export const CustomProvider = ({ children }) => {
   const [cart, setCart] = useState ([]);
   const [ qty , setQty] = useState (0);
   const [total , setTotal] = useState (0);
+  
   useEffect(() =>{
     let cantidad = 0 ;
     let totalCosto = 0 ;
     cart.forEach(item => {
      cantidad += item.cantidad;
-     totalCosto += (item.precio * item.cantidad);
+     totalCosto += (item.detalles.precio * item.cantidad);
     });
     setQty(cantidad);
     setTotal(totalCosto);
@@ -19,7 +20,7 @@ export const CustomProvider = ({ children }) => {
 
 const addItem =(item, cantidad) =>{
  if (isInCart (item.id)){
-const actualizado = cart.map ( (producto)=> {
+  const actualizado = cart.map ( (producto)=> {
   if(producto.id === item.id){
     producto.cantidad += cantidad ;
    }
@@ -30,7 +31,7 @@ const actualizado = cart.map ( (producto)=> {
   setCart([...cart,{...item , cantidad}]);
 }
 setQty(qty + cantidad);
-setTotal(total + (item.precio * cantidad));
+setTotal(total + (item.detalles.precio * cantidad));
 };
 
 const deleteItem = (id) => {
