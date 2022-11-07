@@ -14,7 +14,7 @@ export const ItemList = (props) => {
             {
                           
              props.Productos.map((producto) => {
-             return   <Item key = {producto.categoriaId} pieza={producto} urlPieza={ "/productos/"+ producto.categoriaId}/>
+             return   <Item key = {producto.d} pieza={producto} urlPieza={ "/productos/"+ producto.categoriaId}/>
              })
              }
              

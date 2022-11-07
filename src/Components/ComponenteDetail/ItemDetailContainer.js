@@ -6,31 +6,41 @@ import { db } from  "../../firebase/firebase" ;
 
     export const ItemDetailContainer = () => {
       const { id } = useParams ();
-      const [DetalleProductos , setDetalleProductos]= useState([]);
+      const [Products , setProducts]= useState([]);
       const [Loading , setLoadind] = useState (true);
      
-      useEffect(()=> {
-           const productCollection = collection(db, "productos");
-           const docReferencia = doc (productCollection, id);
+      // useEffect(()=> {
+      //      const productCollection = collection(db, "productos");
+      //      const docReferencia = doc (productCollection, id);
 
-           getDoc (docReferencia)
-           .then(result =>{
-            setDetalleProductos({
-              ...result.data(),
-              id: result.id
+      //      getDoc (docReferencia)
+      //      .then(result =>{
+      //       setDetalleProductos({
+      //         ...result.data(),
+      //         id: result.id
               
-            });
+      //       });
             
-            })
-           .catch(console.log ("error"))
-           .finally(setLoadind(false));
+      //       })
+      //      .catch(console.log ("error"))
+      //      .finally(setLoadind(false));
    
-      },[id]
-      );
+      // },[id]
+      // );
+      useEffect(() => {
+        const docRef = doc(db, "productos", id)
+        getDoc(docRef).then(response => {
+            const data = response.data()
+            const productAdapted = { id: response.id, ...data }
+            setProducts(productAdapted)
+        }).finally(() => {
+          setLoadind(false)
+        })
+    }, [id]);
       return (
         <>
          
-         {<>{Loading ? <h1>cargando...</h1> : <ItemDetail  detalles = {DetalleProductos}/>}</>}
+         {<>{Loading ? <h1>cargando...</h1> : <ItemDetail  detalles = {Products}/>}</>}
         
         </>
        

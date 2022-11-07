@@ -11,15 +11,15 @@ export const ItemListContainer = ({gretting , Mensaje}) => {
   const [Loading , setLoading] = useState (true);
  
  
-  const{ category } = useParams ();
+  const{ categoriaId } = useParams ();
    
   const URL_BASE = 'https://63505e5b3e9fa1244e452d0a.mockapi.io/api/productos'
   
   const urlCategory = 'https://63505e5b3e9fa1244e452d0a.mockapi.io/api/productos/1/categoria/${categoriaId}';
 
   const productCollection = collection (db , 'productos');
-  const q = query (productCollection, where( 'categoriaId' , '==', 'category'));
-  const t = (!category ?  productCollection : q);
+  const q = query (productCollection, where( 'categoriaId' , '==', `${categoriaId}`));
+  const t = (categoriaId ?  q : productCollection );
  
   useEffect(() => {
    
@@ -42,7 +42,7 @@ export const ItemListContainer = ({gretting , Mensaje}) => {
 );
   
 }
-, [category ]); 
+, [categoriaId ]); 
   
   
   return (
