@@ -47,9 +47,4 @@ import { db } from  "../../firebase/firebase" ;
       );
     };
     
-      //   fetch('https://63505e5b3e9fa1244e452d0a.mockapi.io/api/productos/' + params.productoId)
-      //       .then((res)=> res.json())
-      //       .then((json)=> setDetalleProductos(json))
-      //       .catch((error)=> {
-      //        console.log (error);
-      //  })
+     

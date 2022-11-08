@@ -12,7 +12,7 @@ export const CustomProvider = ({ children }) => {
     let totalCosto = 0 ;
     cart.forEach(item => {
      cantidad += item.cantidad;
-     totalCosto += (item.detalles.precio * item.cantidad);
+     totalCosto += (item.precio * item.cantidad);
     });
     setQty(cantidad);
     setTotal(totalCosto);
@@ -23,7 +23,7 @@ const addItem =(item, cantidad) =>{
  if (isInCart (item.id)){
   
   const actualizado = cart.map ( (producto)=> {
-  if(producto.detalles.id === item.detalles.id){
+  if(producto.id === item.id){
     producto.cantidad += cantidad ;
    }
    return producto;
@@ -48,7 +48,7 @@ setTotal(total - (found.precio + found.cantidad));
 
 
 const isInCart = (id) => cart.some (item => item.id === id)
-
+console.log(cart);
 const clear = () => {
   setCart([]);
   setQty(0);

@@ -18,16 +18,36 @@ export const Cart= () => {
         ) : (
        
             <>
-            { cart.map ((props)=> (
-                <h1 key={props.detalles.id}> {qty} {props.detalles.name} $$ {props.detalles.precio} {total}</h1>
-                    
-            ))}
-            <button onClick = {addItem}>agregar mas productos</button>
-            <button onClick = {deleteItem }>eliminar producto</button>
+            { cart.map ((detalles)=> (
+               
+                        <>
+                           <div key={detalles.id}>
+                           <h1 >
+                                {" "}
+                                {qty} {detalles.name} precio unitario $ {detalles.precio}{" "} precio total:$
+                                {total}
+                            </h1>
+                            <button onClick= {() =>deleteItem(detalles.id)}>
+                                eliminar producto
+                            </button>
+
+                           </div>
+                           
+                          
+                        </>
+                    ))}
+        
            <button onClick = {clear} >vaciar carrito </button>
            
+           
+           
             </>
+             
         )}
+         <Link to="/">
+        <button>agregar otro producto</button>
+        </Link>
+
         </>
     );
  };

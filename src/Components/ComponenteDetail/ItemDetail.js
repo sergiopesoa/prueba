@@ -9,14 +9,14 @@ import Typography from '@mui/material/Typography';
 import { Context } from "../../Context/CustomProvider";
 
 
-export const ItemDetail =(props) => 
+export const ItemDetail =({detalles}) => 
 { 
 const [showItemContador , setShowItemContador] = useState(false);
 const {addItem} = useContext (Context);
 
 
   const onAdd = (contador) => {
-   addItem(props, contador);
+   addItem(detalles, contador);
     setShowItemContador (true);
 
   };
@@ -28,19 +28,19 @@ const {addItem} = useContext (Context);
       <CardMedia
         component="img"
         height="200"
-        image={props.detalles.imagen}
+        image={detalles.imagen}
         alt="pieza ceramica"
       />
       <CardContent>
       <Typography variant="h5" color="text.primary">
-        {props.detalles.name} 
+        {detalles.name} 
         </Typography>
 
         <Typography gutterBottom variant="h5" component="div" style={styles.title}>
-        precio : ${props.detalles.precio}  
+        precio : ${detalles.precio}  
         </Typography>
         <Typography variant="h5" color="text.primary">
-         stock  : {props.detalles.stock}
+         stock  : {detalles.stock}
         </Typography>
 
         <Typography variant="h5" color="text.primary">
@@ -50,7 +50,7 @@ const {addItem} = useContext (Context);
     </Card>
 
 {! showItemContador ? ( 
-<ItemCount  stock = {props.detalles.stock} initial = {1} onAdd = {onAdd}/>
+<ItemCount  stock = {detalles.stock} initial = {1} onAdd = {onAdd}/>
 ) : (
   <Link to= {'/cart'}>
   <button >Finalizar conpra</button>
