@@ -1,3 +1,4 @@
+import { cardActionAreaClasses } from '@mui/material';
 import React, { useState , createContext } from 'react'
 import { useEffect } from 'react';
 
@@ -7,18 +8,29 @@ export const CustomProvider = ({ children }) => {
   const [ qty , setQty] = useState (0);
   const [total , setTotal] = useState (0);
   
-  useEffect(() =>{
-    let cantidad = 0 ;
-    let totalCosto = 0 ;
-    cart.forEach(item => {
-     cantidad += item.cantidad;
-     totalCosto += (item.precio * item.cantidad);
-    });
-    setQty(cantidad);
-    setTotal(totalCosto);
-   },[cart]);
+  // useEffect(() =>{
+  //   let cantidad = 0 ;
+  //   let totalCosto = 0 ;
+  //   cart.forEach(item => {
+  //    cantidad += item.cantidad;
+  //    totalCosto += (item.precio * item.cantidad);
+  //   });
+  //   setQty(cantidad);
+  //   setTotal(totalCosto);
+  //  },[cart]);
 
+  const getTotalPrice =()=> {
+return cart.reduce ((prev , act ) => prev + act.count * act.price,0 );
 
+  }
+
+  function getTotalItemCount (){
+    let total = 0 ;
+    cart.forEach ( itemInCart =>{
+      total = total + itemInCart.count
+    })
+    return total ;
+  }
 const addItem =(item, cantidad) =>{
  if (isInCart (item.id)){
   
