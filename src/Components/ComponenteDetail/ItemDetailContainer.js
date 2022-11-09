@@ -9,24 +9,7 @@ import { db } from  "../../firebase/firebase" ;
       const [Products , setProducts]= useState([]);
       const [Loading , setLoadind] = useState (true);
      
-      // useEffect(()=> {
-      //      const productCollection = collection(db, "productos");
-      //      const docReferencia = doc (productCollection, id);
-
-      //      getDoc (docReferencia)
-      //      .then(result =>{
-      //       setDetalleProductos({
-      //         ...result.data(),
-      //         id: result.id
-              
-      //       });
-            
-      //       })
-      //      .catch(console.log ("error"))
-      //      .finally(setLoadind(false));
-   
-      // },[id]
-      // );
+      
       useEffect(() => {
         const docRef = doc(db, "productos", id)
         getDoc(docRef).then(response => {

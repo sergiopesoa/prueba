@@ -1,4 +1,4 @@
-import React , {useContext} from 'react'
+import React , {useState , useContext } from 'react'
 import { Context } from '../../Context/CustomProvider'
 import { Link } from 'react-router-dom';
 import { db } from '../../firebase/firebase';
@@ -18,39 +18,60 @@ export const Cart= () => {
     const mostrarAlerta = () => {
         alert ("Has concretado la compra. Gracias por confiar en nosotros");
      };
-     const ComponenteEventos = () => {
-        const callback = (event) => {
-        console.log(event);
-    };
-    const handlerChange = (event)=>{
-        console.log(event.target.value);
-    }
-    return (
-<>
-<h3>Completar datos comprador</h3>
-<button id= "b1" onClick={callback}>ingrese nombre y apellido</button>
-<input type="text" onChange={handlerChange}/>
-<button id="b2" onClick={callback}>ingrese email</button>
-<input type="text" onChange={handlerChange}/>
-<button id="b3" onClick={callback}>ingrese datos tarjeta de credito</button>
-<input type="text" onChange={handlerChange}/>
-</>
 
-    )
-   
- };
+     const [handleInputChange , setHandleInputChange] = useState ([]);
+     const handleSubmit = () => {
+        return (
+      <form onSubmit={handleSubmit}>
+<input 
+type="text"
+name="nombre" 
+placeholder= "nombre" 
+value="{nombre}" 
+onChange={handleInputChange} 
+required
+/>
+<br/>
+<input 
+type="email"
+name="Email" 
+placeholder= "Email" 
+value="{Email}" 
+onChange={handleInputChange} 
+required
+/>
+<br/>
+<input 
+type="number"
+name="Numero tarjeta" 
+placeholder= "Numero Tarjeta" 
+value="{Numero Tarjeta}" 
+onChange={handleInputChange} 
+required
+/>
+<br/><br/>
+<input 
+type="submit"
+value="finalizar compra" 
+className="btn btn succes"
+/>
+</form>
+      
+ )   };
+  setHandleInputChange (),
+[];
+
+
+
+
+
+
+
  const comprador ={
     nombre : 'juan' ,
     apellido : 'perz',
     email : 'dd@ddd'
 };
-
-
-
-
-
-
-
 
     const finalizarCompra =() => { mostrarAlerta ();
         const ventasCollection = collection (db , "ventas");
@@ -62,9 +83,7 @@ export const Cart= () => {
         })
         
     }
-    
-
-    return (
+     return (
         <>
         { cart.length === 0 ? (
             <h1>No has agregado ningun producto , ingresa <Link to ="/">Aqui</Link></h1>
@@ -91,27 +110,19 @@ export const Cart= () => {
                         </>
                         
                     ))};
-                     
                 
-        
            <button onClick = {clear} >vaciar carrito </button>
            
            <button onClick = {finalizarCompra }>finalizar compra</button>
            
-           <ComponenteEventos/>
+           {/* <ComponenteEventos/> */}
            
             </>
-             
-
-             
+           
         )}
          <Link to="/">
         <button>agregar producto</button>
         </Link>
-        
-        
-
-
         </>
     );
  };
