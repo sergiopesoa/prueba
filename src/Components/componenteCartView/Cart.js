@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { db } from '../../firebase/firebase';
 import { collection , addDoc , serverTimestamp , doc , updateDoc } from 'firebase/firestore';
 import { swal } from 'sweetalert2'
+import { async } from '@firebase/util';
 
 
 export const Cart= () => {
@@ -13,76 +14,94 @@ export const Cart= () => {
     const { addItem} = useContext (Context) ;
     const {deleteItem} = useContext (Context) ;
     const { clear } = useContext (Context);
+    const [load , setLoad] = useState ();
+    const [orderId , setOrderID] = useState ();
     
-    
+
     const mostrarAlerta = () => {
         alert ("Has concretado la compra. Gracias por confiar en nosotros");
      };
-
-     const [handleInputChange , setHandleInputChange] = useState ([]);
-     const handleSubmit = () => {
-        return (
-      <form onSubmit={handleSubmit}>
-<input 
-type="text"
-name="nombre" 
-placeholder= "nombre" 
-value="{nombre}" 
-onChange={handleInputChange} 
-required
-/>
-<br/>
-<input 
-type="email"
-name="Email" 
-placeholder= "Email" 
-value="{Email}" 
-onChange={handleInputChange} 
-required
-/>
-<br/>
-<input 
-type="number"
-name="Numero tarjeta" 
-placeholder= "Numero Tarjeta" 
-value="{Numero Tarjeta}" 
-onChange={handleInputChange} 
-required
-/>
-<br/><br/>
-<input 
-type="submit"
-value="finalizar compra" 
-className="btn btn succes"
-/>
-</form>
-      
- )   };
-  setHandleInputChange (),
-[];
-
-
-
-
-
-
-
- const comprador ={
-    nombre : 'juan' ,
-    apellido : 'perz',
-    email : 'dd@ddd'
-};
-
-    const finalizarCompra =() => { mostrarAlerta ();
-        const ventasCollection = collection (db , "ventas");
-        addDoc(ventasCollection, {
-            comprador,
-            items: cart ,
-            total: total ,
-            date : serverTimestamp ()
-        })
-        
+       const generateOrder = async(data) =>{
+        setLoad(true)
+        try {
+          
+            const col = collection(db, "ventas")
+            const order = await addDoc (col, data)
+            setOrderID(order.id)
+            clear()
+            setLoad(false)
+            } catch (error) {
+                console.log(error)
+            }
     }
+
+        function Form() {
+            const [values, setValues] = React.useState({
+              email: "",
+              nombre: "",
+              tarjeta: "",
+            });
+          
+            function handleSubmit(evt) {
+            evt.preventDefault();
+            const dia = new Date ()
+            const total = getTotal ()
+            const items = cart.map(detalles =>{ 
+              return {
+                id: detalles.id, nombre: detalles.name , precio: detalles.precio , cantidad : detalles.cantidad}
+              
+              })
+            const data = {values,items,dia,total}
+            console.log("data", data)
+            generateOrder(data)
+            mostrarAlerta ()
+            
+            }
+          
+            function handleChange(evt) {
+              const { target } = evt;
+              const { name, value } = target;
+              const newValues = {
+                ...values,
+                [name]: value,
+              };
+          
+              setValues(newValues);
+              
+            }
+          
+            return (
+              <form onSubmit={handleSubmit}>
+                <label htmlFor="email">Email</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={values.email}
+                  onChange={handleChange}
+                />
+                <label htmlFor="nombre">Nombre</label>
+                <input
+                  id="nombre"
+                  name="nombre"
+                  type="text"
+                  value={values.nombre}
+                  onChange={handleChange}
+                />
+                 <label htmlFor="tarjeta">Tarjeta</label>
+                <input
+                  id="tarjeta"
+                  name="tarjeta"
+                  type="number"
+                  value={values.tarjeta}
+                  onChange={handleChange}
+                />
+                <button type="submit">Finalizar Compra</button>
+              </form>
+            );
+           
+          }
+         
      return (
         <>
         { cart.length === 0 ? (
@@ -113,9 +132,8 @@ className="btn btn succes"
                 
            <button onClick = {clear} >vaciar carrito </button>
            
-           <button onClick = {finalizarCompra }>finalizar compra</button>
+            <Form />
            
-           {/* <ComponenteEventos/> */}
            
             </>
            
