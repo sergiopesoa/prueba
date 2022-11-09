@@ -58,17 +58,4 @@ export const ItemListContainer = ({gretting , Mensaje}) => {
   )
   }
 
-    // const getProducts = async () => {
-    //     try {
-    //         const res = await fetch(URL_BASE);
-    //         const data = await res.json();
-    //         setProductos(categoriaId  ? data.filter((item)=> item.categoriaId === categoriaId): data);
-    //         }
-    //     catch (error) {
-    //         console.log(error);
-    //     }
-    //     finally {
-    //         setLoading(false);
-    //     }
-    // } 
-    // getProducts();
+ 
