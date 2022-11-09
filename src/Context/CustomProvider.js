@@ -1,6 +1,5 @@
-import { cardActionAreaClasses } from '@mui/material';
 import React, { useState , createContext } from 'react'
-import { useEffect } from 'react';
+
 
 export const Context = createContext ();
 export const CustomProvider = ({ children }) => {
@@ -8,29 +7,7 @@ export const CustomProvider = ({ children }) => {
   const [ qty , setQty] = useState (0);
   const [total , setTotal] = useState (0);
   
-  // useEffect(() =>{
-  //   let cantidad = 0 ;
-  //   let totalCosto = 0 ;
-  //   cart.forEach(item => {
-  //    cantidad += item.cantidad;
-  //    totalCosto += (item.precio * item.cantidad);
-  //   });
-  //   setQty(cantidad);
-  //   setTotal(totalCosto);
-  //  },[cart]);
-
-  const getTotalPrice =()=> {
-return cart.reduce ((prev , act ) => prev + act.count * act.price,0 );
-
-  }
-
-  function getTotalItemCount (){
-    let total = 0 ;
-    cart.forEach ( itemInCart =>{
-      total = total + itemInCart.count
-    })
-    return total ;
-  }
+ 
 const addItem =(item, cantidad) =>{
  if (isInCart (item.id)){
   
@@ -53,7 +30,7 @@ const deleteItem = (id) => {
 const found = cart.find(producto => producto.id === id );
 setCart (cart.filter (item => item.id !== id));
 setQty(qty - found.cantidad);
-setTotal(total - (found.precio + found.cantidad));
+setTotal(total - (found.precio * found.cantidad));
 
 };
 
@@ -70,7 +47,7 @@ const clear = () => {
 
 
 
-return <Context.Provider value={{ cart, qty , total , addItem , deleteItem , clear }}>{children}</Context.Provider>;
+return <Context.Provider value={{ cart, qty , total , addItem , deleteItem , clear  }}>{children}</Context.Provider>;
     
     
   

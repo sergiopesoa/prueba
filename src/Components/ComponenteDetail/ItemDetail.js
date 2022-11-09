@@ -53,7 +53,7 @@ const {addItem} = useContext (Context);
 <ItemCount  stock = {detalles.stock} initial = {1} onAdd = {onAdd}/>
 ) : (
   <Link to= {'/cart'}>
-  <button >Finalizar conpra</button>
+  <button >ir a detalle de conpra</button>
   </Link>
 )
 
