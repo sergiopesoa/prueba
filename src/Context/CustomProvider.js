@@ -6,8 +6,7 @@ export const CustomProvider = ({ children }) => {
   const [cart, setCart] = useState ([]);
   const [ qty , setQty] = useState (0);
   const [total , setTotal] = useState (0);
-  
- 
+ const [montoTotal , setMontoTotal] = useState (0);
 const addItem =(item, cantidad) =>{
  if (isInCart (item.id)){
   
@@ -22,8 +21,8 @@ const addItem =(item, cantidad) =>{
   setCart([...cart,{...item , cantidad}]);
 }
 setQty(qty + cantidad);
-setTotal(total + (item.precio * cantidad));
-
+ setTotal(total + (item.precio * cantidad));
+setMontoTotal ( montoTotal + (item.precio * cantidad))
 };
 
 const deleteItem = (id) => {
@@ -42,12 +41,12 @@ const clear = () => {
   setCart([]);
   setQty(0);
   setTotal(0);
+  setMontoTotal(0);
 }
 
 
 
-
-return <Context.Provider value={{ cart, qty , total , addItem , deleteItem , clear  }}>{children}</Context.Provider>;
+return <Context.Provider value={{ cart, qty , total , addItem , deleteItem , clear , montoTotal  }}>{children}</Context.Provider>;
     
     
   

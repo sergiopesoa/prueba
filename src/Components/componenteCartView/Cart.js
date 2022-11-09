@@ -16,7 +16,7 @@ export const Cart= () => {
     const { clear } = useContext (Context);
     const [load , setLoad] = useState ();
     const [orderId , setOrderID] = useState ();
-    
+    const {montoTotal} = useContext (Context);
 
     const mostrarAlerta = () => {
         alert ("Has concretado la compra. Gracias por confiar en nosotros");
@@ -45,7 +45,7 @@ export const Cart= () => {
             function handleSubmit(evt) {
             evt.preventDefault();
             const dia = new Date ()
-            const total = getTotal ()
+            const total = montoTotal
             const items = cart.map(detalles =>{ 
               return {
                 id: detalles.id, nombre: detalles.name , precio: detalles.precio , cantidad : detalles.cantidad}
